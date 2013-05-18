@@ -1,0 +1,106 @@
+NAME
+    Progress::Any::Output::TermProgressBarColor - Output progress to
+    terminal as color bar
+
+VERSION
+    version 0.01
+
+SYNOPSIS
+     use Progress::Any::Output;
+     Progress::Any::Output->set('TermProgressBarColor', width=>50);
+
+DESCRIPTION
+    THIS IS AN EARLY RELEASE, SOME THINGS ARE NOT YET IMPLEMENTED E.G.
+    TEMPLATE, STYLES, COLOR THEMES.
+
+    This output displays progress indicators as colored progress bar on
+    terminal. It produces output similar to that produced by
+    Term::ProgressBar, except that it uses the Progress::Any framework and
+    has additional features:
+
+    *   colors and color themes
+
+    *   template and styles
+
+    *   wide character support
+
+    *   displaying message text in addition to bar/percentage number
+
+    XXX option to cleanup when complete or not (like in Term::ProgressBar)
+    and should default to 1.
+
+METHODS
+  new(%args) => OBJ
+    Instantiate. Usually called through
+    "Progress::Any::Output->set("TermProgressBarColor", %args)".
+
+    Known arguments:
+
+    *   width => INT
+
+        Width of progress bar. The default is to detect terminal width and
+        use the whole width.
+
+    *   color_theme => STR
+
+        Choose color theme. To see what color themes are available, use
+        "list_color_themes()".
+
+    *   style => STR
+
+        Choose style. To see what styles are available, use "list_styles()".
+        Styles determine the characters used for drawing the bar, alignment,
+        etc.
+
+    *   template => STR (default: '%p [%B]%e')
+
+        See fill_template in Progress::Any's documentation. Aside from
+        template strings supported by Progress::Any, this output recognizes
+        these additional strings: %b to display the progress bar (using the
+        rest of the available width), %B to display the progress bar as well
+        as the message inside it.
+
+ENVIRONMENT
+  COLOR => BOOL
+    Can be used to force or disable color.
+
+  COLOR_DEPTH => INT
+    Can be used to override color depth detection. See Color::ANSI::Util.
+
+  COLUMNS => INT
+    Can be used to override terminal width detection.
+
+TODO
+    Background updating (through threads or forked process), so progress can
+    still be updated even though the main process is waiting on I/O or
+    external process. But we need to think of a good way to synchronize
+    output.
+
+    Animations, like rotating line ("- / | \ -") or pulsating (". o O o .").
+    Also animation by varying colors.
+
+    Detect connection speed and degrade to lower-frequency updating if
+    connection is slow.
+
+    Styles. Preset formats as well as some behaviors like animation.
+
+    Detection of column change. On each update(), retrieve terminal width
+    again.
+
+SEE ALSO
+    Progress::Any
+
+    Term::ProgressBar
+
+    Ruby library: ruby-progressbar,
+    <https://github.com/jfelchner/ruby-progressbar>
+
+AUTHOR
+    Steven Haryanto <stevenharyanto@gmail.com>
+
+COPYRIGHT AND LICENSE
+    This software is copyright (c) 2013 by Steven Haryanto.
+
+    This is free software; you can redistribute it and/or modify it under
+    the same terms as the Perl 5 programming language system itself.
+
