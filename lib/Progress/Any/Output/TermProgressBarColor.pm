@@ -7,7 +7,7 @@ use warnings;
 use Color::ANSI::Util qw(ansifg ansibg);
 use Text::ANSI::Util qw(ta_mbtrunc ta_mbswidth ta_length);
 
-our $VERSION = '0.02'; # VERSION
+our $VERSION = '0.03'; # VERSION
 
 $|++;
 
@@ -79,7 +79,7 @@ sub update {
         if (defined $msg) {
             $msg = ta_mbtrunc($msg, $bwidth);
             my $mwidth = ta_mbswidth($msg);
-            $bar_bar = ansifg("808080") . $msg . ansifg("ff80000") .
+            $bar_bar = ansifg("808080") . $msg . ansifg("ff8000") .
                 substr($bar_bar, $mwidth);
         }
 
@@ -111,7 +111,7 @@ Progress::Any::Output::TermProgressBarColor - Output progress to terminal as col
 
 =head1 VERSION
 
-version 0.02
+version 0.03
 
 =head1 SYNOPSIS
 
