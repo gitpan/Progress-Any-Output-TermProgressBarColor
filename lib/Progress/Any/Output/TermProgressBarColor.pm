@@ -7,7 +7,7 @@ use warnings;
 use Color::ANSI::Util qw(ansifg ansibg);
 use Text::ANSI::Util qw(ta_mbtrunc ta_mbswidth ta_length);
 
-our $VERSION = '0.04'; # VERSION
+our $VERSION = '0.05'; # VERSION
 
 $|++;
 
@@ -45,8 +45,10 @@ sub update {
     }
 
     my $p = $args{indicator};
-    my $tot = $p->total_target;
-    my $is_complete = $p->{finished} || defined($tot) && $p->{pos} >= $tot;
+    my $tottgt = $p->total_target;
+    my $totpos = $p->total_pos;
+    my $is_complete = $p->{state} eq 'finished' ||
+        defined($tottgt) && $tottgt > 0 && $totpos == $tottgt;
     if ($is_complete) {
         if ($ll) {
             print " " x $ll, "\b" x $ll;
@@ -63,8 +65,8 @@ sub update {
     my $bar_bar = "";
     my $bwidth = $self->{width} - length($bar_pct) - length($bar_eta) - 2;
     if ($bwidth > 0) {
-        if (defined $tot) {
-            my $bfilled = int($p->pos / $tot * $bwidth);
+        if (defined $tottgt) {
+            my $bfilled = int($totpos / $tottgt * $bwidth);
             $bfilled = $bwidth if $bfilled > $bwidth;
             $bar_bar = ("=" x $bfilled) . (" " x ($bwidth-$bfilled));
 
@@ -117,7 +119,7 @@ Progress::Any::Output::TermProgressBarColor - Output progress to terminal as col
 
 =head1 VERSION
 
-version 0.04
+version 0.05
 
 =head1 SYNOPSIS
 

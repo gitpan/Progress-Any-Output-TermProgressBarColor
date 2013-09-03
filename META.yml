@@ -22,4 +22,4 @@ requires:
 resources:
   homepage: http://metacpan.org/release/Progress-Any-Output-TermProgressBarColor
   repository: http://github.com/sharyanto/perl-Progress-Any-Output-TermProgressBarColor
-version: 0.04
+version: 0.05
