@@ -7,13 +7,16 @@ use warnings;
 use Color::ANSI::Util qw(ansifg ansibg);
 use Text::ANSI::Util qw(ta_mbtrunc ta_mbswidth ta_length);
 
-our $VERSION = '0.03'; # VERSION
+our $VERSION = '0.04'; # VERSION
 
 $|++;
 
 sub new {
-    my ($class, %args) = @_;
+    my ($class, %args0) = @_;
 
+    my %args;
+
+    $args{width} = delete($args0{width});
     if (!defined($args{width})) {
         my ($cols, $rows);
         if ($ENV{COLUMNS}) {
@@ -24,6 +27,9 @@ sub new {
         }
         $args{width} = $cols;
     }
+
+    keys(%args0) and die "Unknown output parameter(s): ".
+        join(", ", keys(%args0));
 
     bless \%args, $class;
 }
@@ -52,7 +58,7 @@ sub update {
     my $bar;
     my $bar_pct = $p->fill_template("%p%% ", %args);
 
-    my $bar_eta = $p->fill_template("%6e left", %args);
+    my $bar_eta = $p->fill_template("%R", %args);
 
     my $bar_bar = "";
     my $bwidth = $self->{width} - length($bar_pct) - length($bar_eta) - 2;
@@ -101,8 +107,8 @@ sub update {
 1;
 # ABSTRACT: Output progress to terminal as color bar
 
-
 __END__
+
 =pod
 
 =head1 NAME
@@ -111,7 +117,7 @@ Progress::Any::Output::TermProgressBarColor - Output progress to terminal as col
 
 =head1 VERSION
 
-version 0.03
+version 0.04
 
 =head1 SYNOPSIS
 
@@ -229,4 +235,3 @@ This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
 =cut
-
