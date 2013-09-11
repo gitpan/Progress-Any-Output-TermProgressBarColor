@@ -14,14 +14,9 @@
    },
    "name" : "Progress-Any-Output-TermProgressBarColor",
    "prereqs" : {
-      "build" : {
-         "requires" : {
-            "Module::Build" : "0.3601"
-         }
-      },
       "configure" : {
          "requires" : {
-            "Module::Build" : "0.3601"
+            "ExtUtils::MakeMaker" : "6.30"
          }
       },
       "develop" : {
@@ -36,7 +31,6 @@
          "requires" : {
             "Color::ANSI::Util" : "0",
             "Progress::Any" : "0.10",
-            "Term::Size" : "0",
             "Text::ANSI::Util" : "0",
             "perl" : "5.010001"
          }
@@ -49,6 +43,6 @@
          "url" : "http://github.com/sharyanto/perl-Progress-Any-Output-TermProgressBarColor"
       }
    },
-   "version" : "0.05"
+   "version" : "0.06"
 }
 
