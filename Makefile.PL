@@ -25,7 +25,7 @@ my %WriteMakefileArgs = (
     "Text::ANSI::Util" => 0
   },
   "TEST_REQUIRES" => {},
-  "VERSION" => "0.06",
+  "VERSION" => "0.07",
   "test" => {
     "TESTS" => "t/*.t"
   }

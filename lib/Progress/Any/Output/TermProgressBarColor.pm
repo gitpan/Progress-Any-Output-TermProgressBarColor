@@ -6,8 +6,9 @@ use warnings;
 
 use Color::ANSI::Util qw(ansifg ansibg);
 use Text::ANSI::Util qw(ta_mbtrunc ta_mbswidth ta_length);
+require Win32::Console::ANSI if $^O =~ /Win/;
 
-our $VERSION = '0.06'; # VERSION
+our $VERSION = '0.07'; # VERSION
 
 $|++;
 
@@ -122,7 +123,7 @@ Progress::Any::Output::TermProgressBarColor - Output progress to terminal as col
 
 =head1 VERSION
 
-version 0.06
+version 0.07
 
 =head1 SYNOPSIS
 

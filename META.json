@@ -28,6 +28,9 @@
          }
       },
       "runtime" : {
+         "recommends" : {
+            "Term::Size" : "0"
+         },
          "requires" : {
             "Color::ANSI::Util" : "0",
             "Progress::Any" : "0.10",
@@ -43,6 +46,6 @@
          "url" : "http://github.com/sharyanto/perl-Progress-Any-Output-TermProgressBarColor"
       }
    },
-   "version" : "0.06"
+   "version" : "0.07"
 }
 
