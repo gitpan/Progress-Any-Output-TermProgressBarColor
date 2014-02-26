@@ -8,7 +8,7 @@ use Color::ANSI::Util qw(ansifg ansibg);
 use Text::ANSI::Util qw(ta_mbtrunc ta_mbswidth ta_length);
 require Win32::Console::ANSI if $^O =~ /Win/;
 
-our $VERSION = '0.07'; # VERSION
+our $VERSION = '0.08'; # VERSION
 
 $|++;
 
@@ -110,6 +110,19 @@ sub update {
     $self->{lastlen} = ta_length($bar);
 }
 
+sub cleanup {
+    my ($self) = @_;
+
+    # sometimes (e.g. when a subtask's target is undefined) we don't get
+    # state=finished at the end. but we need to cleanup anyway at the end of
+    # app, so this method is provided and will be called by e.g.
+    # Perinci::CmdLine
+
+    my $ll = $self->{lastlen};
+    return unless $ll;
+    print "\b" x $ll;
+}
+
 1;
 # ABSTRACT: Output progress to terminal as color bar
 
@@ -117,13 +130,15 @@ __END__
 
 =pod
 
+=encoding UTF-8
+
 =head1 NAME
 
 Progress::Any::Output::TermProgressBarColor - Output progress to terminal as color bar
 
 =head1 VERSION
 
-version 0.07
+version 0.08
 
 =head1 SYNOPSIS
 
@@ -154,7 +169,7 @@ uses the L<Progress::Any> framework and has additional features:
 XXX option to cleanup when complete or not (like in Term::ProgressBar) and
 should default to 1.
 
-=for Pod::Coverage ^(update)$
+=for Pod::Coverage ^(update|cleanup)$
 
 =head1 METHODS
 
@@ -229,13 +244,29 @@ L<Term::ProgressBar>
 
 Ruby library: ruby-progressbar, L<https://github.com/jfelchner/ruby-progressbar>
 
+=head1 HOMEPAGE
+
+Please visit the project's homepage at L<https://metacpan.org/release/Progress-Any-Output-TermProgressBarColor>.
+
+=head1 SOURCE
+
+Source repository is at L<https://github.com/sharyanto/perl-Progress-Any-Output-TermProgressBarColor>.
+
+=head1 BUGS
+
+Please report any bugs or feature requests on the bugtracker website L<https://rt.cpan.org/Public/Dist/Display.html?Name=Progress-Any-Output-TermProgressBarColor>
+
+When submitting a bug or request, please include a test-file or a
+patch to an existing test-file that illustrates the bug or desired
+feature.
+
 =head1 AUTHOR
 
 Steven Haryanto <stevenharyanto@gmail.com>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2013 by Steven Haryanto.
+This software is copyright (c) 2014 by Steven Haryanto.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
