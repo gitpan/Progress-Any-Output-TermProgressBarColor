@@ -8,7 +8,7 @@ use Color::ANSI::Util qw(ansifg ansibg);
 use Text::ANSI::Util qw(ta_mbtrunc ta_mbswidth ta_length);
 require Win32::Console::ANSI if $^O =~ /Win/;
 
-our $VERSION = '0.08'; # VERSION
+our $VERSION = '0.09'; # VERSION
 
 $|++;
 
@@ -120,7 +120,7 @@ sub cleanup {
 
     my $ll = $self->{lastlen};
     return unless $ll;
-    print "\b" x $ll;
+    print "\b" x $ll, " " x $ll, "\b" x $ll;
 }
 
 1;
@@ -138,7 +138,7 @@ Progress::Any::Output::TermProgressBarColor - Output progress to terminal as col
 
 =head1 VERSION
 
-version 0.08
+version 0.09
 
 =head1 SYNOPSIS
 

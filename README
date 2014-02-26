@@ -3,7 +3,7 @@ NAME
     terminal as color bar
 
 VERSION
-    version 0.08
+    version 0.09
 
 SYNOPSIS
      use Progress::Any::Output;

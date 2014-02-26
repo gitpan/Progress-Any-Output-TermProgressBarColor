@@ -27,10 +27,10 @@ resources:
   bugtracker: https://rt.cpan.org/Public/Dist/Display.html?Name=Progress-Any-Output-TermProgressBarColor
   homepage: https://metacpan.org/release/Progress-Any-Output-TermProgressBarColor
   repository: git://github.com/sharyanto/perl-Progress-Any-Output-TermProgressBarColor.git
-version: '0.08'
+version: '0.09'
 x_Dist_Zilla:
   perl:
-    version: '5.018002'
+    version: '5.010001'
   plugins:
     -
       class: Dist::Zilla::Plugin::GatherDir
