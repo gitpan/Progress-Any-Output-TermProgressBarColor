@@ -8,7 +8,7 @@ use Color::ANSI::Util qw(ansifg ansibg);
 use Text::ANSI::Util qw(ta_mbtrunc ta_mbswidth ta_length);
 require Win32::Console::ANSI if $^O =~ /Win/;
 
-our $VERSION = '0.09'; # VERSION
+our $VERSION = '0.10'; # VERSION
 
 $|++;
 
@@ -69,7 +69,7 @@ sub update {
     my $bar_bar = "";
     my $bwidth = $self->{width} - length($bar_pct) - length($bar_eta) - 2;
     if ($bwidth > 0) {
-        if (defined $tottgt) {
+        if ($tottgt) {
             my $bfilled = int($totpos / $tottgt * $bwidth);
             $bfilled = $bwidth if $bfilled > $bwidth;
             $bar_bar = ("=" x $bfilled) . (" " x ($bwidth-$bfilled));
@@ -138,7 +138,7 @@ Progress::Any::Output::TermProgressBarColor - Output progress to terminal as col
 
 =head1 VERSION
 
-version 0.09
+This document describes version 0.10 of Progress::Any::Output::TermProgressBarColor (from Perl distribution Progress-Any-Output-TermProgressBarColor), released on 2014-07-04.
 
 =head1 SYNOPSIS
 
