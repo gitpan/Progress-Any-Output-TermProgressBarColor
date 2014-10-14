@@ -8,7 +8,7 @@ use Color::ANSI::Util qw(ansifg ansibg);
 use Text::ANSI::Util qw(ta_mbtrunc ta_mbswidth ta_length);
 require Win32::Console::ANSI if $^O =~ /Win/;
 
-our $VERSION = '0.11'; # VERSION
+our $VERSION = '0.12'; # VERSION
 
 $|++;
 
@@ -145,7 +145,7 @@ Progress::Any::Output::TermProgressBarColor - Output progress to terminal as col
 
 =head1 VERSION
 
-This document describes version 0.11 of Progress::Any::Output::TermProgressBarColor (from Perl distribution Progress-Any-Output-TermProgressBarColor), released on 2014-10-14.
+This document describes version 0.12 of Progress::Any::Output::TermProgressBarColor (from Perl distribution Progress-Any-Output-TermProgressBarColor), released on 2014-10-14.
 
 =head1 SYNOPSIS
 
@@ -156,6 +156,12 @@ This document describes version 0.11 of Progress::Any::Output::TermProgressBarCo
 
 B<THIS IS AN EARLY RELEASE, SOME THINGS ARE NOT YET IMPLEMENTED E.G. TEMPLATE,
 STYLES, COLOR THEMES>.
+
+Sample screenshots:
+
+=for Pod::Coverage ^(update|cleanup)$
+
+=for HTML <img src="http://blogs.perl.org/users/perlancar/progany-tpc-sample.jpg" />
 
 This output displays progress indicators as colored progress bar on terminal. It
 produces output similar to that produced by L<Term::ProgressBar>, except that it
@@ -175,8 +181,6 @@ uses the L<Progress::Any> framework and has additional features:
 
 XXX option to cleanup when complete or not (like in Term::ProgressBar) and
 should default to 1.
-
-=for Pod::Coverage ^(update|cleanup)$
 
 =head1 METHODS
 
