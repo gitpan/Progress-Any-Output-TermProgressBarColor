@@ -8,7 +8,7 @@ use Color::ANSI::Util qw(ansifg ansibg);
 use Text::ANSI::Util qw(ta_mbtrunc ta_mbswidth ta_length);
 require Win32::Console::ANSI if $^O =~ /Win/;
 
-our $VERSION = '0.10'; # VERSION
+our $VERSION = '0.11'; # VERSION
 
 $|++;
 
@@ -32,6 +32,9 @@ sub new {
         $args{width} = $^O =~ /Win/ ? $cols-1 : $cols;
     }
 
+    $args{fh} = delete($args0{fh});
+    $args{fh} //= \*STDOUT;
+
     keys(%args0) and die "Unknown output parameter(s): ".
         join(", ", keys(%args0));
 
@@ -44,7 +47,8 @@ sub update {
     # "erase" previous display
     my $ll = $self->{lastlen};
     if (defined $self->{lastlen}) {
-        print "\b" x $self->{lastlen};
+        my $fh = $self->{fh};
+        print $fh "\b" x $self->{lastlen};
         undef $self->{lastlen};
     }
 
@@ -55,7 +59,8 @@ sub update {
         defined($tottgt) && $tottgt > 0 && $totpos == $tottgt;
     if ($is_complete) {
         if ($ll) {
-            print " " x $ll, "\b" x $ll;
+            my $fh = $self->{fh};
+            print $fh " " x $ll, "\b" x $ll;
         }
         return;
     }
@@ -105,7 +110,8 @@ sub update {
         ansifg("ffff00"), $bar_eta,
         "\e[0m",
     );
-    print $bar;
+    my $fh = $self->{fh};
+    print $fh $bar;
 
     $self->{lastlen} = ta_length($bar);
 }
@@ -120,7 +126,8 @@ sub cleanup {
 
     my $ll = $self->{lastlen};
     return unless $ll;
-    print "\b" x $ll, " " x $ll, "\b" x $ll;
+    my $fh = $self->{fh};
+    print $fh "\b" x $ll, " " x $ll, "\b" x $ll;
 }
 
 1;
@@ -138,7 +145,7 @@ Progress::Any::Output::TermProgressBarColor - Output progress to terminal as col
 
 =head1 VERSION
 
-This document describes version 0.10 of Progress::Any::Output::TermProgressBarColor (from Perl distribution Progress-Any-Output-TermProgressBarColor), released on 2014-07-04.
+This document describes version 0.11 of Progress::Any::Output::TermProgressBarColor (from Perl distribution Progress-Any-Output-TermProgressBarColor), released on 2014-10-14.
 
 =head1 SYNOPSIS
 
@@ -204,6 +211,10 @@ strings supported by Progress::Any, this output recognizes these additional
 strings: C<%b> to display the progress bar (using the rest of the available
 width), C<%B> to display the progress bar as well as the message inside it.
 
+=item * fh => handle (default: \*STDOUT)
+
+Instead of the default STDOUT, you can direct the output to another filehandle.
+
 =back
 
 =head1 ENVIRONMENT
@@ -250,7 +261,7 @@ Please visit the project's homepage at L<https://metacpan.org/release/Progress-A
 
 =head1 SOURCE
 
-Source repository is at L<https://github.com/sharyanto/perl-Progress-Any-Output-TermProgressBarColor>.
+Source repository is at L<https://github.com/perlancar/perl-Progress-Any-Output-TermProgressBarColor>.
 
 =head1 BUGS
 
@@ -262,11 +273,11 @@ feature.
 
 =head1 AUTHOR
 
-Steven Haryanto <stevenharyanto@gmail.com>
+perlancar <perlancar@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2014 by Steven Haryanto.
+This software is copyright (c) 2014 by perlancar@cpan.org.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.

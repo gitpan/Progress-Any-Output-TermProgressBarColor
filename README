@@ -3,9 +3,9 @@ NAME
     terminal as color bar
 
 VERSION
-    This document describes version 0.10 of
+    This document describes version 0.11 of
     Progress::Any::Output::TermProgressBarColor (from Perl distribution
-    Progress-Any-Output-TermProgressBarColor), released on 2014-07-04.
+    Progress-Any-Output-TermProgressBarColor), released on 2014-10-14.
 
 SYNOPSIS
      use Progress::Any::Output;
@@ -62,6 +62,11 @@ METHODS
         rest of the available width), %B to display the progress bar as well
         as the message inside it.
 
+    *   fh => handle (default: \*STDOUT)
+
+        Instead of the default STDOUT, you can direct the output to another
+        filehandle.
+
 ENVIRONMENT
   COLOR => BOOL
     Can be used to force or disable color.
@@ -103,7 +108,7 @@ HOMEPAGE
 
 SOURCE
     Source repository is at
-    <https://github.com/sharyanto/perl-Progress-Any-Output-TermProgressBarCo
+    <https://github.com/perlancar/perl-Progress-Any-Output-TermProgressBarCo
     lor>.
 
 BUGS
@@ -115,10 +120,10 @@ BUGS
     to an existing test-file that illustrates the bug or desired feature.
 
 AUTHOR
-    Steven Haryanto <stevenharyanto@gmail.com>
+    perlancar <perlancar@cpan.org>
 
 COPYRIGHT AND LICENSE
-    This software is copyright (c) 2014 by Steven Haryanto.
+    This software is copyright (c) 2014 by perlancar@cpan.org.
 
     This is free software; you can redistribute it and/or modify it under
     the same terms as the Perl 5 programming language system itself.

@@ -11,7 +11,7 @@ use ExtUtils::MakeMaker 6.30;
 
 my %WriteMakefileArgs = (
   "ABSTRACT" => "Output progress to terminal as color bar",
-  "AUTHOR" => "Steven Haryanto <stevenharyanto\@gmail.com>",
+  "AUTHOR" => "perlancar <perlancar\@cpan.org>",
   "CONFIGURE_REQUIRES" => {
     "ExtUtils::MakeMaker" => "6.30"
   },
@@ -25,12 +25,14 @@ my %WriteMakefileArgs = (
     "Text::ANSI::Util" => 0
   },
   "TEST_REQUIRES" => {
+    "Capture::Tiny" => 0,
     "File::Spec" => 0,
     "IO::Handle" => 0,
     "IPC::Open3" => 0,
-    "Test::More" => 0
+    "Progress::Any::Output" => 0,
+    "Test::More" => "0.98"
   },
-  "VERSION" => "0.10",
+  "VERSION" => "0.11",
   "test" => {
     "TESTS" => "t/*.t"
   }
@@ -38,12 +40,14 @@ my %WriteMakefileArgs = (
 
 
 my %FallbackPrereqs = (
+  "Capture::Tiny" => 0,
   "Color::ANSI::Util" => 0,
   "File::Spec" => 0,
   "IO::Handle" => 0,
   "IPC::Open3" => 0,
   "Progress::Any" => "0.10",
-  "Test::More" => 0,
+  "Progress::Any::Output" => 0,
+  "Test::More" => "0.98",
   "Text::ANSI::Util" => 0
 );
 
