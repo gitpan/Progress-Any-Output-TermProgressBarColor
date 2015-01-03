@@ -8,7 +8,7 @@ use Color::ANSI::Util qw(ansifg ansibg);
 use Text::ANSI::Util qw(ta_mbtrunc ta_mbswidth ta_length);
 require Win32::Console::ANSI if $^O =~ /Win/;
 
-our $VERSION = '0.12'; # VERSION
+our $VERSION = '0.13'; # VERSION
 
 $|++;
 
@@ -145,7 +145,7 @@ Progress::Any::Output::TermProgressBarColor - Output progress to terminal as col
 
 =head1 VERSION
 
-This document describes version 0.12 of Progress::Any::Output::TermProgressBarColor (from Perl distribution Progress-Any-Output-TermProgressBarColor), released on 2014-10-14.
+This document describes version 0.13 of Progress::Any::Output::TermProgressBarColor (from Perl distribution Progress-Any-Output-TermProgressBarColor), released on 2015-01-03.
 
 =head1 SYNOPSIS
 
@@ -235,22 +235,6 @@ Can be used to override color depth detection. See L<Color::ANSI::Util>.
 
 Can be used to override terminal width detection.
 
-=head1 TODO
-
-Background updating (through threads or forked process), so progress can still
-be updated even though the main process is waiting on I/O or external process.
-But we need to think of a good way to synchronize output.
-
-Animations, like rotating line (C<- / | \ ->) or pulsating (C<. o O o .>). Also
-animation by varying colors.
-
-Detect connection speed and degrade to lower-frequency updating if connection is
-slow.
-
-Styles. Preset formats as well as some behaviors like animation.
-
-Detection of column change. On each update(), retrieve terminal width again.
-
 =head1 SEE ALSO
 
 L<Progress::Any>
@@ -265,7 +249,7 @@ Please visit the project's homepage at L<https://metacpan.org/release/Progress-A
 
 =head1 SOURCE
 
-Source repository is at L<https://github.com/perlancar/perl-Progress-Any-Output-TermProgressBarColor>.
+Source repository is at L<https://github.com/sharyanto/perl-Progress-Any-Output-TermProgressBarColor>.
 
 =head1 BUGS
 
@@ -281,7 +265,7 @@ perlancar <perlancar@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2014 by perlancar@cpan.org.
+This software is copyright (c) 2015 by perlancar@cpan.org.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
